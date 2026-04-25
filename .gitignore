@@ -1,0 +1,10 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+
+# media files
+slides/
+media/
+
+# Virtual environments
+.venv
