@@ -413,7 +413,7 @@ class ClassicalComputing(QuantumScene):
 
         z1 = ImageMobject("images/z1.jpg").scale(0.7).shift(2*LEFT)
         cpu = ImageMobject("images/cpu.jpg").scale(0.17).next_to(z1, RIGHT, aligned_edge=ORIGIN)
-        
+
         self.play(FadeIn(z1, shift=UP), FadeIn(cpu, shift=UP))
         self.transition_next_slide()
 
@@ -425,7 +425,7 @@ class QubitSuperposition(QuantumScene):
 
         def get_formula(alpha, beta, color_superposition, color_alpha, color_beta):
                 formula = MathTex(
-                    r"\lvert \Psi \rangle", # 0 
+                    r"\lvert \Psi \rangle", # 0
                     "=",                    # 1
                     rf"{alpha}",            # 2
                     r"\lvert 0 \rangle",    # 3
@@ -450,7 +450,7 @@ class QubitSuperposition(QuantumScene):
             c3 = ManimColor.from_hsv((0.66 * beta, 1., 1.))
             return get_formula(f"{alpha**2:.3f}", f"{1-alpha**2:.3f}", c3, c1, c2)
 
-    
+
         formula0 = get_formula(r"\alpha", r"\beta", ACCENT_YELLOW, ACCENT_RED, ACCENT_BLUE)
 
         formula = always_redraw(f)
@@ -505,7 +505,7 @@ class QubitSuperposition(QuantumScene):
              FadeOut(qubit_state, shift=DOWN), FadeOut(arrow_qubit, shift=DOWN),
              FadeOut(weights, shift=DOWN), FadeOut(arrow_weights1, shift=DOWN), FadeOut(arrow_weights2, shift=DOWN),
              FadeOut(zero_state, shift=DOWN), FadeOut(arrow_zero_state, shift=DOWN),
-             FadeOut(one_state, shift=DOWN), FadeOut(arrow_one_state, shift=DOWN),    
+             FadeOut(one_state, shift=DOWN), FadeOut(arrow_one_state, shift=DOWN),
         )
 
         formula_0bit = get_formula(r"1", r"0", ACCENT_YELLOW, ACCENT_RED, ACCENT_BLUE)
@@ -534,7 +534,7 @@ class QubitSuperposition(QuantumScene):
         c2 = lambda: colors()[1]
         c3 = lambda: colors()[2]
 
-        circle1 = Circle(color=c1(), fill_opacity=1)            
+        circle1 = Circle(color=c1(), fill_opacity=1)
         circle2 = Circle(color=c2(), fill_opacity=1).shift(LEFT)
         un = Intersection(circle1, circle2, fill_color=c3(), fill_opacity=1)
 
@@ -553,7 +553,7 @@ class QubitSuperposition(QuantumScene):
         self.next_slide()
 
         tracker2 = ValueTracker(-1)
-        
+
         def get_formula2():
              value = tracker2.get_value()
              if value < 0:
@@ -615,7 +615,7 @@ class QubitMeasurement(QuantumScene):
 
         def get_formula(alpha, beta, color_superposition, color_alpha, color_beta):
                 formula = MathTex(
-                    r"\lvert \Psi \rangle", # 0 
+                    r"\lvert \Psi \rangle", # 0
                     "=",                    # 1
                     rf"{alpha}",            # 2
                     r"\lvert 0 \rangle",    # 3
@@ -632,7 +632,7 @@ class QubitMeasurement(QuantumScene):
                 return formula
 
         formula = get_formula(r"0.8", r"0.6", ACCENT_YELLOW, ACCENT_RED, ACCENT_BLUE)
-        
+
         group1 = VGroup(
             arrow0 := Arrow(buff=4),
             p0 := MathTex(r"36\%").next_to(arrow0.get_top(), UP, buff=0)
@@ -657,7 +657,7 @@ class QubitMeasurement(QuantumScene):
         mathtex1[0].set_color(ACCENT_YELLOW)
         mathtex1[2].set_color(ACCENT_BLUE)
 
-        
+
         #p12 = MathTex(r"p(", r"|1\rangle", r")=", r"36\%").scale(1.5).next_to(p0, DOWN)
 
         #self.add(formula, group0, group1, text0, text1)
@@ -698,7 +698,7 @@ class QubitMeasurement(QuantumScene):
         self.play(FadeIn(zero_fixed, shift=UP), FadeIn(one_fixed, shift=UP), FadeIn(num0, shift=UP), FadeIn(num1, shift=UP))
         #self.wait(1)
 
-        
+
         random.seed(2026_05_02)
         zeros = 0
         for j in range(100):
@@ -762,7 +762,7 @@ class QubitBloch(QuantumScene3D):
             t = time_tracker.get_value()
             theta = t*2*PI if t < 0.5 else 2*PI*(1-t)
             return theta, t*20
-    
+
         get_theta = lambda: get_theta_phi()[0]
         get_phi = lambda: get_theta_phi()[1]
 
@@ -808,7 +808,7 @@ class QubitBloch(QuantumScene3D):
             beta_i = np.imag(beta)
 
             tex = MathTex(
-                r"\lvert \Psi \rangle",           # 0 
+                r"\lvert \Psi \rangle",           # 0
                 "=",                              # 1
                 rf"{alpha:.3f}",                  # 2
                 r"\lvert 0 \rangle",              # 3
@@ -870,7 +870,7 @@ class QubitEntanglement(QuantumScene):
         self.construct_title("Verschränkung")
 
         formula1 = MathTex(
-            r"\lvert \Psi \rangle",           # 0 
+            r"\lvert \Psi \rangle",           # 0
             "=",                              # 1
 
             r"\alpha\lvert",                  # 2
@@ -895,7 +895,7 @@ class QubitEntanglement(QuantumScene):
         for j in (3,6,9,12):
             formula1[j].set_color(ACCENT_RED)
             formula1[j+1].set_color(ACCENT_BLUE)
-        
+
 
         qubit1 = Text("Qubit 1").scale(0.8).set_color(ACCENT_RED).next_to(formula1.get_top(), UP, buff=1.5).shift(.7*RIGHT)
         qubit2 = Text("Qubit 2").scale(0.8).set_color(ACCENT_BLUE).next_to(formula1.get_bottom(), DOWN, buff=1.5).shift(.7*RIGHT)
@@ -919,7 +919,7 @@ class QubitEntanglement(QuantumScene):
         self.play(FadeOut(qubit1, shift=DOWN), FadeOut(qubit2, shift=DOWN), *[FadeOut(e, shift=DOWN) for e in arrows1], *[FadeOut(e, shift=DOWN) for e in arrows2])
 
         self.play(formula1.animate.shift(1.5*UP))
-        
+
         formula2 = MathTex(r"\lvert\Psi\rangle", r"= \frac{1}{\sqrt 2}\Big(", r"\lvert", "0", "1", r"\rangle + \lvert", "1", "0", r"\rangle\Big)").move_to(formula1.get_center())
         formula2[0].set_color(ACCENT_YELLOW)
         for j in (3, 6):
@@ -985,7 +985,7 @@ class QubitEntanglement(QuantumScene):
         envelop2 = envelop1.copy().next_to(envelop1, RIGHT, buff=2)
         self.play(FadeIn(envelop1, shift=UP), FadeIn(envelop2, shift=UP))
         self.next_slide()
-        
+
         zero = Text("0", color=ACCENT_RED).scale(1.5).next_to(envelop1, UP)
         one  = Text("1", color=ACCENT_BLUE).scale(1.5).next_to(envelop2, UP)
         #one = Text("1", color=ACCENT_BLUE).move_to(envelop2.center())
@@ -1136,7 +1136,7 @@ class Gates(QuantumScene):
         hadamard2 = hadamard.copy().scale(0.5).next_to(xgate2, DOWN, buff=0.2)
         self.play(ReplacementTransform(hadamard, hadamard2))
 
-        cnot = get_cnot().shift(2*LEFT)
+        cnot = get_cnot().shift(3*LEFT)
 
         ket_in1_1  = ket0.copy().move_to(cnot.get_corner(LEFT+UP)).shift(0.4*LEFT).set_color(ACCENT_RED)
         ket_in2_1  = ket0.copy().move_to(cnot.get_corner(LEFT+DOWN)).shift(0.4*LEFT).set_color(ACCENT_RED)
@@ -1153,7 +1153,7 @@ class Gates(QuantumScene):
         ket_out1_3 = ket1.copy().move_to(cnot.get_corner(RIGHT+UP)).shift(0.4*RIGHT).set_color(ACCENT_BLUE)
         ket_out2_3 = ket1.copy().move_to(cnot.get_corner(RIGHT+DOWN)).shift(0.4*RIGHT).set_color(ACCENT_BLUE)
 
-        ket_in1_4  = ket0.copy().move_to(cnot.get_corner(LEFT+UP)).shift(0.4*LEFT).set_color(ACCENT_RED)
+        ket_in1_4  = ket1.copy().move_to(cnot.get_corner(LEFT+UP)).shift(0.4*LEFT).set_color(ACCENT_RED)
         ket_in2_4  = ket1.copy().move_to(cnot.get_corner(LEFT+DOWN)).shift(0.4*LEFT).set_color(ACCENT_RED)
         ket_out1_4 = ket1.copy().move_to(cnot.get_corner(RIGHT+UP)).shift(0.4*RIGHT).set_color(ACCENT_BLUE)
         ket_out2_4 = ket0.copy().move_to(cnot.get_corner(RIGHT+DOWN)).shift(0.4*RIGHT).set_color(ACCENT_BLUE)
@@ -1175,7 +1175,7 @@ class Gates(QuantumScene):
             [r"\lvert01\rangle", r"\lvert01\rangle"],
             [r"\lvert10\rangle", r"\lvert11\rangle"],
             [r"\lvert11\rangle", r"\lvert10\rangle"]],
-        ).next_to(cnot, RIGHT, buff=1)
+        ).next_to(cnot, RIGHT, buff=2.5)
         table[0][2].set_color(ACCENT_RED)
         table[0][4].set_color(ACCENT_RED)
         table[0][6].set_color(ACCENT_RED)
@@ -1186,9 +1186,16 @@ class Gates(QuantumScene):
         table[0][9].set_color(ACCENT_BLUE)
         table.scale(0.8)
 
-        self.play(FadeIn(table, shift=UP))
+
+        t1 = Text("Control").scale(0.5).next_to(ket_in1_4, LEFT)
+        t2 = Text("Target").scale(0.5).next_to(ket_in2_4, LEFT)
+        t3 = Text("=Control").scale(0.5).next_to(ket_out1_4, RIGHT)
+        t4 = Text("=C xor T").scale(0.5).next_to(ket_out2_4, RIGHT)
+
+        self.play(*[FadeIn(e, shift=UP) for e in (table, t1, t2, t3, t4)])
+
         self.next_slide()
-        self.play(*[FadeOut(e, shift=DOWN) for e in (table, ket_in1_4, ket_in2_4, ket_out1_4, ket_out2_4)])
+        self.play(*[FadeOut(e, shift=DOWN) for e in (table, ket_in1_4, ket_in2_4, ket_out1_4, ket_out2_4, t1, t2, t3, t4)])
         cnot2 = cnot.copy().scale(0.5).next_to(hadamard2, DOWN, buff=0.2)
         self.play(ReplacementTransform(cnot, cnot2))
 
@@ -1291,7 +1298,7 @@ class Algorithms(QuantumScene):
         group1.shift(4*LEFT).shift(1.7*UP)
         group2.next_to(group1, DOWN, aligned_edge=LEFT, buff=0.45)
         group3.next_to(group2, DOWN, aligned_edge=LEFT, buff=0.45)
-        
+
         group4.next_to(group1, RIGHT, aligned_edge=UP, buff=2)
         group5.next_to(group4, DOWN, aligned_edge=LEFT, buff=0.45)
         group6.next_to(group5, DOWN, aligned_edge=LEFT, buff=0.45)
@@ -1301,7 +1308,7 @@ class Algorithms(QuantumScene):
         for g in groups:
             self.play(FadeIn(g,shift=UP))
             self.next_slide()
-        
+
         self.play(FadeOut(g, shift=DOWN) for g in groups)
 
 
@@ -1366,8 +1373,8 @@ class Algorithms(QuantumScene):
         for text in group:
             self.play(FadeIn(text, shift=UP))
             self.next_slide()
-        
-        
+
+
         self.play(FadeOut(group, shift=DOWN))
 
 
@@ -1450,7 +1457,7 @@ class StateOfTheArt(QuantumScene):
         for t in texts:
             self.play(FadeIn(t, shift=UP))
             self.next_slide()
-        
+
         self.play(FadeOut(texts, shift=DOWN))
 
         buff = 0.18
@@ -1517,7 +1524,7 @@ class StateOfTheArt(QuantumScene):
                     elem.set_color(GREEN)
                 elif elem.text.startswith("-"):
                     elem.set_color(RED)
-        
+
         group1.to_corner(UL).shift(.9*DOWN)
         group2.move_to(group1, aligned_edge=UP).shift(4.5*RIGHT)
         group3.move_to(group1, aligned_edge=UP).shift(9*RIGHT)
@@ -1529,7 +1536,7 @@ class StateOfTheArt(QuantumScene):
         for group in groups:
             self.play(FadeIn(group, shift=UP))
             self.next_slide()
-        
+
         self.play(*[FadeOut(group, shift=UP) for group in groups])
 
 
